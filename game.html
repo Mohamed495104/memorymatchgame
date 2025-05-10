@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Match Game</title>
+  <link rel="icon" href="Images/memory-game.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="home.html" class="logo">Memory Match</a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="game.html" class="nav-link active">Game</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="#" id="show-leaderboard" class="nav-link">Leaderboard</a>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <div class="container">
+    <div class="dashboard">
+      <!-- Game Header Section -->
+      <div class="game-header">
+        <h1 class="game-title">Memory Match Challenge</h1>
+        <p class="game-subtitle">
+          Find all matching pairs to unlock gallery images!
+        </p>
+      </div>
+
+      <!-- Player Information Section -->
+      <div class="player-info" id="player-info-section">
+        <h3>Player Information</h3>
+        <div class="player-input">
+          <label for="player-name">Your Name:</label>
+          <input type="text" id="player-name" placeholder="Enter your name" maxlength="15" />
+        </div>
+        <p id="current-player" class="current-player-display"></p>
+      </div>
+
+      <!-- Game Statistics Section -->
+      <div class="game-stats">
+        <div class="stat">
+          <span class="stat-icon"><i class="fas fa-stopwatch"></i></span>
+          <h3 class="stat-value" id="timer">00:00</h3>
+          <p class="stat-label">Time</p>
+        </div>
+        <div class="stat">
+          <span class="stat-icon"><i class="fas fa-sync-alt"></i></span>
+          <h3 class="stat-value" id="moves">0</h3>
+          <p class="stat-label">Moves</p>
+        </div>
+        <div class="stat">
+          <span class="stat-icon"><i class="fas fa-star"></i></span>
+          <h3 class="stat-value" id="score">0</h3>
+          <p class="stat-label">Score</p>
+        </div>
+        <div class="stat">
+          <span class="stat-icon"><i class="fas fa-trophy"></i></span>
+          <h3 class="stat-value" id="matches">0</h3>
+          <p class="stat-label">Matches</p>
+        </div>
+      </div>
+
+      <!-- Game Controls Section -->
+      <div class="game-controls">
+        <button id="start-game" class="btn primary-btn">Start Game</button>
+        <button id="reset-game" class="btn secondary-btn">Reset</button>
+        <div class="difficulty-selector">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty">
+            <option value="easy">Easy (4×3)</option>
+            <option value="medium" selected>Medium (4×4)</option>
+            <option value="hard">Hard (6×4)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Board (Right Side) -->
+    <div class="game-board" id="game-board">
+      <!-- Cards will be dynamically inserted here by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Game Message Modal -->
+  <div class="modal" id="game-modal">
+    <div class="modal-content">
+      <span class="close-modal">×</span>
+      <h2 id="modal-title">Congratulations!</h2>
+      <p id="modal-message">You've completed the game!</p>
+      <div class="modal-stats">
+        <div class="modal-stat">
+          <i class="fas fa-stopwatch"></i>
+          <span id="final-time">00:00</span>
+        </div>
+        <div class="modal-stat">
+          <i class="fas fa-sync-alt"></i>
+          <span id="final-moves">0</span>
+        </div>
+        <div class="modal-stat">
+          <i class="fas fa-star"></i>
+          <span id="final-score">0</span>
+        </div>
+      </div>
+      <div id="rank-info" class="rank-info">
+        <p>Your Rank: <span id="player-rank">-</span></p>
+      </div>
+      <div class="modal-buttons">
+        <button id="play-again" class="btn primary-btn">Play Again</button>
+        <a href="gallery.html" class="btn secondary-btn">View Gallery</a>
+        <button id="view-leaderboard" class="btn secondary-btn">
+          View Leaderboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard Modal -->
+  <div class="modal" id="leaderboard-modal">
+    <div class="modal-content leaderboard-content">
+      <span class="close-modal close-leaderboard">×</span>
+      <h2>Memory Match Leaderboard</h2>
+      <div class="leaderboard-filters">
+        <label for="leaderboard-difficulty">Filter by Difficulty:</label>
+        <select id="leaderboard-difficulty">
+          <option value="all">All Difficulties</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="leaderboard-table-container">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Score</th>
+              <th>Difficulty</th>
+              <th>Moves</th>
+              <th>Time</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body">
+            <!-- Leaderboard entries will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="no-scores-message" id="no-scores-message">
+        No scores available yet. Be the first to set a high score!
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Created by Mohamed Ijas & Swedha</p>
+    <p>© 2025 Memory Match Game</p>
+  </footer>
+
+  <!-- jQuery and JavaScript files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Match - Gallery</title>
+  <link rel="icon" href="Images/memory-game.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="home.html" class="logo">Memory Match</a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="game.html" class="nav-link">Game</a>
+      <a href="gallery.html" class="nav-link active">Gallery</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="gallery-container">
+    <div class="gallery-header">
+      <h1 class="gallery-title">Your Discovered Images</h1>
+      <p class="gallery-subtitle">
+        Match more pairs during gameplay to unlock all the beautiful images!
+      </p>
+    </div>
+
+    <!-- Gallery Controls -->
+    <div class="gallery-controls">
+      <div class="gallery-filter">
+        <label for="gallery-sort">Sort by:</label>
+        <select id="gallery-sort">
+          <option value="recent">Most Recent</option>
+          <option value="oldest">Oldest First</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </div>
+      <div class="gallery-view-toggle">
+        <button id="grid-view" class="gallery-view-btn active">
+          <i class="fas fa-th"></i> Grid
+        </button>
+        <button id="list-view" class="gallery-view-btn">
+          <i class="fas fa-list"></i> List
+        </button>
+      </div>
+      <div class="gallery-difficulty-filter">
+        <label for="gallery-difficulty">Difficulty:</label>
+        <select id="gallery-difficulty">
+          <option value="all">All Difficulties</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Gallery Collection Stats -->
+    <div class="gallery-stats">
+      <div class="gallery-stat">
+        <span class="gallery-stat-icon"><i class="fas fa-image"></i></span>
+        <h3 class="gallery-stat-value" id="discovered-count">0</h3>
+        <p class="gallery-stat-label">Images Discovered</p>
+      </div>
+      <div class="gallery-stat">
+        <span class="gallery-stat-icon"><i class="fas fa-lock"></i></span>
+        <h3 class="gallery-stat-value" id="locked-count">0</h3>
+        <p class="gallery-stat-label">Images Locked</p>
+      </div>
+      <div class="gallery-stat">
+        <span class="gallery-stat-icon"><i class="fas fa-percentage"></i></span>
+        <h3 class="gallery-stat-value" id="completion-percent">0%</h3>
+        <p class="gallery-stat-label">Completion</p>
+      </div>
+    </div>
+
+    <!-- Gallery Images Display -->
+    <div id="gallery-display" class="gallery-grid">
+      <!-- Images will be dynamically loaded here -->
+    </div>
+
+    <!-- Empty Gallery Message -->
+    <div id="empty-gallery-message" class="empty-gallery-message">
+      <i class="fas fa-images gallery-empty-icon"></i>
+      <h3>Your Gallery is Empty</h3>
+      <p>Play the memory match game to discover and collect beautiful images!</p>
+      <a href="game.html" class="btn primary-btn gallery-play-btn">Play Now</a>
+    </div>
+
+    <!-- Locked Images Section -->
+    <div class="locked-images-section">
+      <h2 class="locked-section-title">Locked Images Preview</h2>
+      <p class="locked-section-subtitle">Match these in the game to unlock them!</p>
+      <div class="locked-images-container" id="locked-images-container">
+        <!-- Locked image previews will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Preview Modal -->
+  <div class="modal" id="image-preview-modal">
+    <div class="modal-content image-preview-content">
+      <span class="close-modal">×</span>
+      <div class="image-preview-container">
+        <img id="preview-image" src="" alt="Image Preview" />
+      </div>
+      <div class="image-preview-info">
+        <h3 id="preview-title">Image Title</h3>
+        <p id="preview-description">Image description goes here.</p>
+        <div class="image-preview-details">
+          <div class="preview-detail">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Discovered: </span>
+            <span id="preview-date">Unknown</span>
+          </div>
+          <div class="preview-detail">
+            <i class="fas fa-trophy"></i>
+            <span>Difficulty: </span>
+            <span id="preview-difficulty">Unknown</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <a href="game.html" class="btn primary-btn">Play Again</a>
+        <button id="close-preview" class="btn secondary-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievement Unlocked Notification -->
+  <div class="achievement-notification" id="achievement-notification">
+    <div class="achievement-icon">
+      <i class="fas fa-award"></i>
+    </div>
+    <div class="achievement-content">
+      <h4 class="achievement-title">Collection Growing!</h4>
+      <p class="achievement-description">You've unlocked <span id="achievement-count">0</span> images</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Created by Mohamed Ijas & Swedha</p>
+    <p>© 2025 Memory Match Game</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Gallery Script -->
+  <script src="gallery.js"></script>
+</body>
+
+</html>
